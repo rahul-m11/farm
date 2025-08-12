@@ -19,7 +19,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
-  const { cartItems, updateQuantity, removeItem } = useCart();
+  const { cartItems, updateQuantity, removeItem, clearCart } = useCart();
   const { toast } = useToast();
 
   const { data: products = [] } = useQuery<Product[]>({
@@ -49,13 +49,7 @@ export default function Home() {
     setLocationFilter(location);
   };
 
-  const handleCheckout = () => {
-    toast({
-      title: "Checkout Initiated",
-      description: "Redirecting to secure checkout...",
-    });
-    // In a real app, this would redirect to a checkout page
-  };
+
 
   return (
     <div className="min-h-screen bg-light-green-bg">
@@ -238,7 +232,7 @@ export default function Home() {
         cartItems={cartItems}
         onUpdateQuantity={updateQuantity}
         onRemoveItem={removeItem}
-        onCheckout={handleCheckout}
+        onClearCart={clearCart}
       />
       <ChatWidget />
     </div>

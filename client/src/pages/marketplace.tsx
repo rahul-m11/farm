@@ -14,7 +14,7 @@ export default function Marketplace() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
   const { toast } = useToast();
-  const { cartItems, updateQuantity, removeItem } = useCart();
+  const { cartItems, updateQuantity, removeItem, clearCart } = useCart();
 
   const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: searchQuery 
@@ -37,12 +37,7 @@ export default function Marketplace() {
     setLocationFilter(location);
   };
 
-  const handleCheckout = () => {
-    toast({
-      title: "Checkout Initiated",
-      description: "Redirecting to secure checkout...",
-    });
-  };
+
 
   if (isLoading) {
     return (
@@ -129,7 +124,7 @@ export default function Marketplace() {
         cartItems={cartItems}
         onUpdateQuantity={updateQuantity}
         onRemoveItem={removeItem}
-        onCheckout={handleCheckout}
+        onClearCart={clearCart}
       />
       <ChatWidget />
     </div>

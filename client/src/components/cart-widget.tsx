@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, X, Plus, Minus, Trash2 } from "lucide-react";
 import { Product } from "@shared/schema";
+import CheckoutModal from "./checkout-modal";
 
 interface CartItem extends Product {
   quantity: number;
@@ -13,11 +14,12 @@ interface CartWidgetProps {
   cartItems: CartItem[];
   onUpdateQuantity: (productId: string, quantity: number) => void;
   onRemoveItem: (productId: string) => void;
-  onCheckout: () => void;
+  onClearCart: () => void;
 }
 
-export default function CartWidget({ cartItems, onUpdateQuantity, onRemoveItem, onCheckout }: CartWidgetProps) {
+export default function CartWidget({ cartItems, onUpdateQuantity, onRemoveItem, onClearCart }: CartWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
   
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
@@ -125,7 +127,7 @@ export default function CartWidget({ cartItems, onUpdateQuantity, onRemoveItem, 
                 </div>
                 <Button 
                   className="w-full bg-harvest-orange text-white hover:bg-harvest-orange/90"
-                  onClick={onCheckout}
+                  onClick={() => setShowCheckout(true)}
                 >
                   Proceed to Checkout
                 </Button>
@@ -134,6 +136,13 @@ export default function CartWidget({ cartItems, onUpdateQuantity, onRemoveItem, 
           </CardContent>
         </Card>
       )}
+      
+      <CheckoutModal
+        isOpen={showCheckout}
+        onClose={() => setShowCheckout(false)}
+        cartItems={cartItems}
+        onClearCart={onClearCart}
+      />
     </div>
   );
 }
