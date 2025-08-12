@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 120 40% 98%;
+    --foreground: 89 100% 11%;
+    --card: 120 40% 98%;
+    --card-foreground: 89 100% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 89 100% 11%;
+    --primary: 120 60% 25%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 35 100% 70%;
+    --secondary-foreground: 89 100% 11%;
+    --muted: 120 20% 94%;
+    --muted-foreground: 89 40% 45%;
+    --accent: 120 20% 94%;
+    --accent-foreground: 89 100% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 120 20% 89%;
+    --input: 120 20% 89%;
+    --ring: 120 60% 25%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 89 100% 4%;
+    --foreground: 0 0% 98%;
+    --card: 89 100% 4%;
+    --card-foreground: 0 0% 98%;
+    --popover: 89 100% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 89 100% 11%;
+    --secondary: 89 60% 11%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 89 60% 11%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 89 60% 11%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 89 60% 11%;
+    --input: 89 60% 11%;
+    --ring: 0 0% 83%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+}
+
+.font-inter {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
