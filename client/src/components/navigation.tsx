@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Sprout, Search, Bell, User, Menu } from "lucide-react";
+import AddProductModal from "@/components/add-product-modal";
 import { useState } from "react";
 
 export default function Navigation() {
@@ -43,6 +44,7 @@ export default function Navigation() {
           
           {/* User Actions */}
           <div className="flex items-center space-x-4">
+            <AddProductModal />
             <Button variant="ghost" size="icon" className="text-dark-green-text hover:text-forest-green">
               <Search className="h-5 w-5" />
             </Button>

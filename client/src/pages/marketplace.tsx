@@ -2,16 +2,19 @@ import Navigation from "@/components/navigation";
 import SearchFilter from "@/components/search-filter";
 import ProductCard from "@/components/product-card";
 import ChatWidget from "@/components/chat-widget";
+import CartWidget from "@/components/cart-widget";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "@shared/schema";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/hooks/use-cart";
 
 export default function Marketplace() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
   const { toast } = useToast();
+  const { cartItems, updateQuantity, removeItem } = useCart();
 
   const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: searchQuery 
@@ -34,10 +37,10 @@ export default function Marketplace() {
     setLocationFilter(location);
   };
 
-  const handleAddToCart = (productName: string) => {
+  const handleCheckout = () => {
     toast({
-      title: "Added to Cart",
-      description: `${productName} has been added to your cart.`,
+      title: "Checkout Initiated",
+      description: "Redirecting to secure checkout...",
     });
   };
 
@@ -115,7 +118,6 @@ export default function Marketplace() {
                 <ProductCard 
                   key={product.id} 
                   product={product}
-                  onAddToCart={() => handleAddToCart(product.name)}
                 />
               ))}
             </div>
@@ -123,6 +125,12 @@ export default function Marketplace() {
         </div>
       </section>
 
+      <CartWidget 
+        cartItems={cartItems}
+        onUpdateQuantity={updateQuantity}
+        onRemoveItem={removeItem}
+        onCheckout={handleCheckout}
+      />
       <ChatWidget />
     </div>
   );

@@ -4,14 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, Star, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Product } from "@shared/schema";
+import { useCart } from "@/hooks/use-cart";
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: () => void;
 }
 
-export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const [isFavorited, setIsFavorited] = useState(false);
+  const { addToCart } = useCart();
 
   return (
     <Card className="product-card bg-white shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all">
@@ -55,7 +56,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </div>
         <Button 
           className="w-full bg-forest-green text-white hover:bg-forest-green/90"
-          onClick={onAddToCart}
+          onClick={() => addToCart(product)}
         >
           Add to Cart
         </Button>

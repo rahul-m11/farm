@@ -4,6 +4,7 @@ import SearchFilter from "@/components/search-filter";
 import ProductCard from "@/components/product-card";
 import ToolCard from "@/components/tool-card";
 import ChatWidget from "@/components/chat-widget";
+import CartWidget from "@/components/cart-widget";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
@@ -11,11 +12,15 @@ import { Product, Tool } from "@shared/schema";
 import { Apple, Carrot, Wrench, Sprout, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
+import { useCart } from "@/hooks/use-cart";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [locationFilter, setLocationFilter] = useState("all");
+  const { cartItems, updateQuantity, removeItem } = useCart();
+  const { toast } = useToast();
 
   const { data: products = [] } = useQuery<Product[]>({
     queryKey: searchQuery ? ['/api/products/search', { q: searchQuery }] : ['/api/products'],
@@ -42,6 +47,14 @@ export default function Home() {
 
   const handleLocationFilter = (location: string) => {
     setLocationFilter(location);
+  };
+
+  const handleCheckout = () => {
+    toast({
+      title: "Checkout Initiated",
+      description: "Redirecting to secure checkout...",
+    });
+    // In a real app, this would redirect to a checkout page
   };
 
   return (
@@ -97,7 +110,6 @@ export default function Home() {
                 <ProductCard 
                   key={product.id} 
                   product={product}
-                  onAddToCart={() => console.log('Add to cart:', product.name)}
                 />
               ))}
             </div>
@@ -222,6 +234,12 @@ export default function Home() {
         </div>
       </footer>
 
+      <CartWidget 
+        cartItems={cartItems}
+        onUpdateQuantity={updateQuantity}
+        onRemoveItem={removeItem}
+        onCheckout={handleCheckout}
+      />
       <ChatWidget />
     </div>
   );
