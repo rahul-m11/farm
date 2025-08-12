@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(124, 65%, 18%);
+  --card: hsl(63, 68%, 95%);
+  --card-foreground: hsl(124, 65%, 18%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(124, 65%, 18%);
+  --primary: hsl(122, 47%, 33%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(34, 100%, 57%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(63, 68%, 95%);
+  --muted-foreground: hsl(124, 65%, 18%);
+  --accent: hsl(88, 41%, 54%);
+  --accent-foreground: hsl(124, 65%, 18%);
+  --destructive: hsl(0, 100%, 50%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(88, 41%, 90%);
+  --input: hsl(63, 68%, 95%);
+  --ring: hsl(122, 47%, 33%);
+  --chart-1: hsl(122, 47%, 33%);
+  --chart-2: hsl(88, 41%, 54%);
+  --chart-3: hsl(34, 100%, 57%);
+  --chart-4: hsl(63, 68%, 70%);
+  --chart-5: hsl(122, 30%, 70%);
+  --sidebar: hsl(63, 68%, 95%);
+  --sidebar-foreground: hsl(124, 65%, 18%);
+  --sidebar-primary: hsl(122, 47%, 33%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(88, 41%, 54%);
+  --sidebar-accent-foreground: hsl(124, 65%, 18%);
+  --sidebar-border: hsl(88, 41%, 90%);
+  --sidebar-ring: hsl(122, 47%, 33%);
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.5rem;
+  
+  /* Custom agricultural marketplace colors */
+  --forest-green: hsl(122, 47%, 33%);
+  --harvest-orange: hsl(34, 100%, 57%);
+  --light-green-bg: hsl(63, 68%, 95%);
+  --dark-green-text: hsl(124, 65%, 18%);
+  --bright-green: hsl(88, 41%, 54%);
+  --mint-chat: hsl(122, 30%, 92%);
+}
+
+.dark {
+  --background: hsl(124, 65%, 5%);
+  --foreground: hsl(63, 68%, 95%);
+  --card: hsl(122, 30%, 10%);
+  --card-foreground: hsl(63, 68%, 95%);
+  --popover: hsl(124, 65%, 5%);
+  --popover-foreground: hsl(63, 68%, 95%);
+  --primary: hsl(122, 47%, 40%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(34, 100%, 50%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(122, 30%, 15%);
+  --muted-foreground: hsl(63, 68%, 70%);
+  --accent: hsl(88, 41%, 45%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0, 100%, 50%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(122, 30%, 20%);
+  --input: hsl(122, 30%, 15%);
+  --ring: hsl(122, 47%, 40%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .product-card:hover {
+    transform: translateY(-4px);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .chat-bubble {
+    animation: slide-up 0.3s ease-out;
+  }
+  
+  .chat-widget {
+    animation: bounce-in 0.3s ease-out;
+  }
+  
+  .bg-forest-green {
+    background-color: var(--forest-green);
+  }
+  
+  .bg-harvest-orange {
+    background-color: var(--harvest-orange);
+  }
+  
+  .bg-light-green-bg {
+    background-color: var(--light-green-bg);
+  }
+  
+  .bg-bright-green {
+    background-color: var(--bright-green);
+  }
+  
+  .bg-mint-chat {
+    background-color: var(--mint-chat);
+  }
+  
+  .text-forest-green {
+    color: var(--forest-green);
+  }
+  
+  .text-harvest-orange {
+    color: var(--harvest-orange);
+  }
+  
+  .text-dark-green-text {
+    color: var(--dark-green-text);
+  }
+  
+  .text-bright-green {
+    color: var(--bright-green);
+  }
+  
+  .border-forest-green {
+    border-color: var(--forest-green);
+  }
+  
+  .hover\:bg-forest-green:hover {
+    background-color: var(--forest-green);
+  }
+  
+  .hover\:bg-harvest-orange:hover {
+    background-color: var(--harvest-orange);
+  }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
