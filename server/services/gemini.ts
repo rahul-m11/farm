@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 // Note that the newest Gemini model series is "gemini-2.5-flash" or "gemini-2.5-pro"
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "AIzaSyDOqXnEZruboez8lur-ou3CXftSG1nurNQ" });
 
 export interface FarmingChatResponse {
   message: string;
